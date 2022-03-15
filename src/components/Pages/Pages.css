@@ -108,15 +108,17 @@
     background: var(--color);
 }
 
-.h:not(.activee):hover{
-    background: var(--background-pages)
-}
-.pagination div:not(.firstA, .lastA, .previosA):hover svg{
-    background-color: var(--background-pages);
-}
-
 .pagination svg{
     fill: var(--color);
+}
+
+@media(pointer: fine){
+    .h:not(.activee):hover{
+        background: var(--background-pages)
+    }
+    .pagination div:not(.firstA, .lastA, .previosA):hover svg{
+        background-color: var(--background-pages);
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

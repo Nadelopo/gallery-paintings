@@ -79,8 +79,6 @@ li div{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
-
   
 .create{
   padding: 20px 21px 20px 21px;
@@ -92,6 +90,10 @@ li div{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.crea{
+  border-top: 0!important;
 }
 
 input {
