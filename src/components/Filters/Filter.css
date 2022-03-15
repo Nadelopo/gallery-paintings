@@ -5,6 +5,10 @@
 }
 
 .visibility{
+    color: var(--color);
+}
+
+.visibility::placeholder{
     color: var(--color-input);
 }
 
