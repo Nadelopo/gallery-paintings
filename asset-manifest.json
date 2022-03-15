@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/qwe/static/css/main.28e70af9.css",
-    "main.js": "/qwe/static/js/main.304b628f.js",
-    "index.html": "/qwe/index.html",
-    "main.28e70af9.css.map": "/qwe/static/css/main.28e70af9.css.map",
-    "main.304b628f.js.map": "/qwe/static/js/main.304b628f.js.map"
+    "main.css": "/Nadelopo/qwe.git/static/css/main.28e70af9.css",
+    "main.js": "/Nadelopo/qwe.git/static/js/main.304b628f.js",
+    "index.html": "/Nadelopo/qwe.git/index.html",
+    "main.28e70af9.css.map": "/Nadelopo/qwe.git/static/css/main.28e70af9.css.map",
+    "main.304b628f.js.map": "/Nadelopo/qwe.git/static/js/main.304b628f.js.map"
   },
   "entrypoints": [
     "static/css/main.28e70af9.css",
