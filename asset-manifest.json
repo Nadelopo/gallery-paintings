@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.css": "/practice/static/css/main.1b161254.css",
-    "main.js": "/practice/static/js/main.304b628f.js",
+    "main.css": "/practice/static/css/main.a491c8c4.css",
+    "main.js": "/practice/static/js/main.32601805.js",
+    "static/media/theme.svg": "/practice/static/media/theme.5e80aa732d0675e67f8a4916ece51461.svg",
     "index.html": "/practice/index.html",
-    "main.1b161254.css.map": "/practice/static/css/main.1b161254.css.map",
-    "main.304b628f.js.map": "/practice/static/js/main.304b628f.js.map"
+    "static/media/logo.svg": "/practice/static/media/logo.93702d9e82afa8c9df410b91493f88df.svg",
+    "static/media/last.svg": "/practice/static/media/last.6f10db1625db04640e93cedfed4f9c37.svg",
+    "static/media/first.svg": "/practice/static/media/first.f16eab9a57c15754e4c732c389924513.svg",
+    "static/media/tick.svg": "/practice/static/media/tick.706576eb6e56d1d94bcb50bf62874dfa.svg",
+    "static/media/right.svg": "/practice/static/media/right.8bea5f36f8c095ad2f2f0e0d671a86b1.svg",
+    "static/media/left.svg": "/practice/static/media/left.8a0fea10543ce374554f1039a732803a.svg",
+    "main.a491c8c4.css.map": "/practice/static/css/main.a491c8c4.css.map",
+    "main.32601805.js.map": "/practice/static/js/main.32601805.js.map"
   },
   "entrypoints": [
-    "static/css/main.1b161254.css",
-    "static/js/main.304b628f.js"
+    "static/css/main.a491c8c4.css",
+    "static/js/main.32601805.js"
   ]
 }
