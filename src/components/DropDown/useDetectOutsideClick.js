@@ -1,41 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-
-export const useDetectOutsideClick = (el, initialState,ref) => {
+const useDetectOutsideClick = (el, initialState, ref) => {
+  const refobg = ref;
   const [isActive, setIsActive] = useState(initialState);
 
   useEffect(() => {
-    const onClick = e => {
-      
+    const onClick = (e) => {
       if (el.current !== null && !el.current.contains(e.target)) {
         setIsActive(!isActive);
-
-        // let g=el.current.classList[el.current.classList.length-1]
-        // document.querySelector(`.${g}`).style.cssText=`border-radius: 8px; transition: 0.3s`
-        
-        ref.current.style.cssText=`border-radius: 8px; transition: 0.3s;`
-
+        refobg.current.style.cssText = 'border-radius: 8px; transition:  background-color 300ms linear,border-radius 300ms';
       }
     };
-      /* border: 1px solid rgba(255, 255, 255, 0.3); */
-  /* border: 1px solid rgba(0, 0, 0, 0.3); */
-    
+
     if (isActive) {
-      window.addEventListener("click", onClick);  
-
-      // let g=el.current.classList[el.current.classList.length-1]
-      // document.querySelector(`.${g}`).style.cssText=`border-radius: 8px 8px 0 0; transition: 0.3s`
-      ref.current.style.cssText=`border-radius: 8px 8px 0 0; transition: 0.3s`
-     
-      
-
+      window.addEventListener('click', onClick);
+      refobg.current.style.cssText = 'border-radius: 8px 8px 0 0; transition:  background-color 300ms linear,border-radius 300ms';
     }
 
     return () => {
-      window.removeEventListener("click", onClick);
-      
+      window.removeEventListener('click', onClick);
     };
-  }, [isActive, el,ref]);
+  }, [isActive, el, refobg]);
 
   return [isActive, setIsActive];
 };
+
+export default useDetectOutsideClick;

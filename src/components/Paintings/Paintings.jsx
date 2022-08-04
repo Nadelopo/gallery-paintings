@@ -1,106 +1,114 @@
-import React, {useState,useEffect} from 'react'
-import axios from 'axios'
-import './Paintings.css'
-import { getPageCount} from '../Utils/Pages';
+import React, { useState, useEffect } from 'react';
+import PaintingS from './Paintings.module.sass';
 import Pages from '../Pages/Pages';
-export default function Paintings(props) {     
+import { getData } from '../Utils/Axios';
+import { Width } from '../Utils/Paintings';
 
-    const [appState, setAppState] = useState();
-    
-    const [totalPages, setTotalPages] = useState();
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState();
-    const [width, setWidth]   = useState(window.innerWidth);
+export default function Paintings({
+  search,
+  authorId,
+  locatioId,
+  dateFrom,
+  dateBefore,
+  authors,
+  location,
+  page,
+  setPage,
+}) {
+  const [appState, setAppState] = useState([]);
+  const [totalPages, setTotalPages] = useState();
+  const [limit, setLimit] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
 
-    const updateDimensions = () => {
-        setWidth(window.innerWidth);
-    }
-    
-    useEffect(() => {
-      if(width>=1024){
-        setLimit(9)
-      } 
-      if (width<1024){
-        setLimit(8)
-      }
-      if (width<768){
-        setLimit(6)
-      }
-      
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
-    }, [width]);
-    
-    const changePage = (page) => {
-      setPage(page)
-    }
+  Width(setLimit, width, setWidth);
 
-    useEffect(() => {setPage(1)}, [props.search,props.dateFrom,props.dateBefore,props.author,props.locatio])
-    
-    
-    
-    useEffect(() => {
-      const paintings = 'https://test-front.framework.team/paintings';
-     
-      axios.get(paintings,{
-        params: {
-          _limit: limit,  
-          _page: page,
-          q: props.search,
-          authorId: props.author,
-          locationId: props.locatio,
-          created_gte: props.dateFrom!=='' ? props.dateFrom : 0,
-          created_lte: props.dateBefore!=='' ? props.dateBefore :3000
-        }
-      }).then((resp) => {
-        const allPersons = resp.data;
-        setAppState(allPersons);
-        const totalCount= resp.headers['x-total-count']
-        setTotalPages(getPageCount(totalCount,limit))
-      });
-    }, [setAppState,page,props.search,props.dateFrom,props.dateBefore,props.author,props.locatio,limit]);
+  useEffect(() => {
+    getData(
+      process.env.REACT_APP_PAINTINGS,
+      setAppState,
+      limit,
+      page,
+      search,
+      authorId,
+      locatioId,
+      dateFrom,
+      dateBefore,
+      setTotalPages,
+    );
+  }, [
+    setAppState,
+    page,
+    search,
+    dateFrom,
+    dateBefore,
+    authorId,
+    locatioId,
+    limit,
+  ]);
 
-   
-
-  
   return (
-    <div >
-        <div className="Paintings">{appState?.map(home =>
-         <div key={home.id}  className="paint">
-           
-             <div className='imgPaintings'><img src={'https://test-front.framework.team/' + home.imageUrl} alt="" /></div>
-              
-              <div className='textPaintings'>
+    <div>
+      <div className={PaintingS.paintings__main}>
+        {appState?.map((home) => (
+          <div key={home.id} className={PaintingS.picture}>
+            <div className={PaintingS.img__paintings}>
+              <img
+                src={`https://test-front.framework.team/${home.imageUrl}`}
+                alt=""
+              />
+            </div>
+            <div className={PaintingS.text__paintings}>
+              <div style={{ marginBottom: '6px' }}>{home.name}</div>
 
-                <div style={{marginBottom: '6px'}}>{home.name}</div>
-
-                  <div >{props.authors?.map(authors => 
-                    <div key={authors.id}> 
-                        {authors.id === home.authorId ? <div className='vis'>Author:  <span className='visName'>{authors.name}</span></div> : null}
-                    </div>)} 
+              <div>
+                {authors?.map((authorlist) => (
+                  <div key={authorlist.id}>
+                    {authorlist.id === home.authorId ? (
+                      <div className={PaintingS.visibility__name}>
+                        Author:
+                        <span className={PaintingS.visibility__text}>
+                          {authorlist.name}
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
+                ))}
+              </div>
 
-                  <div className='vis'>Created: <span className='visName'>{home.created}</span></div>
+              <div className={PaintingS.visibility__name}>
+                Created:
+                <span className={PaintingS.visibility__text}>
+                  {home.created}
+                </span>
+              </div>
 
-                  <div >{props.location?.map(location => 
-                    <div key={location.id}> 
-                        {location.id === home.locationId ? <div className='vis'>Location:  <span className='visName'>{location.location}</span></div> : null}
-                    </div>)} 
+              <div>
+                {location?.map((locationlist) => (
+                  <div key={locationlist.id}>
+                    {locationlist.id === home.locationId ? (
+                      <div className={PaintingS.visibility__name}>
+                        Location:
+                        <span className={PaintingS.visibility__text}>
+                          {locationlist.location}
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
-
-                  
-
-                </div>
-
-           </div>
-         )}
-
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-      
-      <div className=' pagin'>
-        <Pages width={width} totalPages={totalPages} changePage={changePage} page={page}/>
+
+      <div className={PaintingS.pagination__mobile__postiton}>
+        <Pages
+          width={width}
+          totalPages={totalPages}
+          changePage={setPage}
+          page={page}
+        />
       </div>
-      
     </div>
-  )
+  );
 }

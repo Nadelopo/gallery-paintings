@@ -1,18 +1,12 @@
-import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Filter from "./components/Filters/Filter";
-import './styles/App.css'
-import { useTheme } from "./components/Utils/Theme";
-
-
-
-
+import React from 'react';
+import Navbar from './components/Navbar/Navbar';
+import Filter from './components/Filters/Filter';
+import './styles/App.sass';
 
 function App() {
-  const {theme,setTheme} = useTheme()
   return (
-    <div className="App">
-      <Navbar theme={theme} setTheme={setTheme}/>
+    <div>
+      <Navbar />
       <Filter />
     </div>
   );

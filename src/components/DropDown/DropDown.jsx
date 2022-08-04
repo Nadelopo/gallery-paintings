@@ -1,71 +1,63 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
+import DropS from './DropDown.module.sass';
+import useDetectOutsideClick from './useDetectOutsideClick';
+import { ReactComponent as ReactTick } from '../../icons/tick.svg';
 
-import { useDetectOutsideClick } from "./useDetectOutsideClick";
-
-
-export default function Dropdown({authors,location,getAuthor,getLocation,name,reff}) {
+export default function Dropdown({
+  authors, location, getAuthor, getLocation, name, reff,
+}) {
   const dropdownRef = useRef(null);
- 
-  
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false,reff);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false, reff);
   const onClick = () => setIsActive(!isActive);
 
-  const mord = (e) => {
-      onClick()
-    }
+  const getAuth = (authorsId) => {
+    getAuthor(authorsId);
+    setIsActive(!isActive);
+    const change = reff.current;
+    change.style.cssText = 'border-radius: 8px; transition:  background-color 300ms linear,border-radius 300ms';
+  };
 
-    const getAuthAll = () => {
-      getAuthor('all')
-      setIsActive(!isActive)
-      reff.current.style.cssText=`border-radius: 8px; transition: 0.3s`
-    }
+  const getLoc = (locationId) => {
+    getLocation(locationId);
+    setIsActive(!isActive);
+    const change = reff.current;
+    change.style.cssText = 'border-radius: 8px; transition:  background-color 300ms linear,border-radius 300ms';
+  };
 
-    const getLocAll = () => {
-      getLocation('all')
-      setIsActive(!isActive)
-      reff.current.style.cssText=`border-radius: 8px; transition: 0.3s`
+  const getAll = (nam) => {
+    setIsActive(!isActive);
+    const change = reff.current;
+    change.style.cssText = 'border-radius: 8px; transition:  background-color 300ms linear,border-radius 300ms';
+    if (nam === 'authors') {
+      getAuthor('all');
+    } else {
+      getLocation('all');
     }
-
-    const getAuth = (authorsId) => {
-      getAuthor(authorsId)
-      setIsActive(!isActive)
-      reff.current.style.cssText=`border-radius: 8px; transition: 0.3s`
-    }
-
-    const getLoc = (locationId) => {
-      getLocation(locationId)
-      setIsActive(!isActive)
-      reff.current.style.cssText=`border-radius: 8px; transition: 0.3s`
-    }
-
+  };
 
   return (
     <div>
-      <div className="menu-container">
-        <div onClick={e => mord(e.target)} className='menu-trig'>
-            <svg  width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.67861 1.8337L5.77064 5.68539C5.34503 6.10487 4.65497 6.10487 4.22936 5.68539L0.321394 1.8337C-0.365172 1.15702 0.121082 -8.3659e-08 1.09203 0L8.90797 6.73452e-07C9.87892 7.57113e-07 10.3652 1.15702 9.67861 1.8337Z"   fillOpacity="0.3"/>
-            </svg>
+      <div className={DropS.menu__container}>
+
+        <div role="button" onClick={() => onClick()} className={DropS.menu_trig} onKeyPress={() => onClick()} tabIndex="0">
+          <ReactTick width="10px" height="6px" />
         </div>
-        
-        
+
         <nav
           ref={dropdownRef}
-          className={`menu ${isActive ? "active" : "inactive"}`}
+          className={`${DropS.menu} ${isActive ? DropS.active : DropS.inactive}`}
         >
           <ul>
-            <li style={{marginTop: '20px'}} onClick={() => {name==='authors' ? getAuthAll() : getLocAll()}}>All</li>
+            <div className={DropS.list} role="button" style={{ marginTop: '10px' }} onClick={() => getAll(name)} onKeyPress={() => onClick()} tabIndex="0">All</div>
             <div>
-              {location?.map(location => <li key={location.id} onClick={() => getLoc(location.id)}><div>{location.location}</div></li> )}
+              {location?.map((locationlist) => <div className={DropS.list} role="button" key={locationlist.id} onClick={() => getLoc(locationlist.id)} onKeyPress={() => getLoc(locationlist.id)} tabIndex="0"><div>{locationlist.location}</div></div>)}
             </div>
             <div>
-              {authors?.map(authors => <li key={authors.id} onClick={() => getAuth(authors.id)}><div>{authors.name}</div></li> )}
+              {authors?.map((authorslist) => <div className={DropS.list} role="button" key={authorslist.id} onClick={() => getAuth(authorslist.id)} onKeyPress={() => getAuth(authorslist.id)} tabIndex="0"><div>{authorslist.name}</div></div>)}
             </div>
-              
           </ul>
-
         </nav>
-        
+
       </div>
     </div>
   );
