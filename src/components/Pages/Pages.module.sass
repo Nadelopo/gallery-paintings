@@ -1,0 +1,130 @@
+.pagination__main
+    margin: 40px 0 70px 0
+    display: inline-flex
+
+
+.number
+    cursor: pointer
+    background: var(--background-color)
+    border-top: 1px solid var(--color)
+    border-right: 1px solid var(--color)
+    border-bottom: 1px solid var(--color)
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18px
+    color: var(--color)
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.previous__next__disable
+    opacity: 0.3
+    background: var(--background-color)
+    border-top: 1px solid var(--color)
+    border-right: 1px solid var(--color)
+    border-bottom: 1px solid var(--color)
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18p
+    color: #000000
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.first
+    cursor: pointer
+    background: var(--background-color)
+    border: 1px solid var(--color)
+    border-radius: 8px 0 0 8px
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18px
+    color: var(--color)
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.first__disable
+    opacity: 0.3
+    background: var(--background-color)
+    border: 1px solid var(--color)
+    border-radius: 8px 0 0 8px
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18px
+    color: #000000
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.last
+    cursor: pointer
+    background: var(--background-color)
+    border: 1px solid var(--color)
+    border-left: 0
+    border-radius: 0 8px 8px 0
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18px
+    color: #000000
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.last__disable
+    opacity: 0.3
+    background: var(--background-color)
+    border: 1px solid var(--color)
+    border-left: 0
+    border-radius: 0 8px 8px 0
+    box-sizing: border-box
+    width: 41px
+    height: 41px
+    font-weight: 500
+    font-size: 18px
+    color: #000000
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.activee
+    color: var(--background-color)
+    background: var(--color)
+
+
+.pagination__main svg
+    fill: var(--color)
+
+
+@media(pointer: fine)
+    .switch__all:not(.activee):hover
+        background: var(--background-pages)
+    .pagination__main div:not(.first__disable, .last__disable, .previous__next__disable):hover svg
+        background-color: var(--background-pages)
+    
+
+@media (min-width: 768px) and (max-width: 1023px) 
+    .pagination__main
+        margin: 35px 0 65px 0
+    
+
+@media (min-width: 320px) and (max-width: 767px)
+    .pagination__main
+        margin: 30px 0 25px 0
+    
